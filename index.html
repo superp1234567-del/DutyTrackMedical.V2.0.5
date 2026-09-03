@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบลงเวลาเข้าเวร</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<img src="file_00000000df1871faaec2f49468dea769.png" class="logo">
+
+<!-- PAGE 1 -->
+<div class="container" id="page1">
+
+<h1>✨ ระบบลงเวลาเข้าเวร ✨</h1>
+
+<label>ชื่อผู้เข้าเวร</label>
+<select id="name">
+<option value="">-- เลือกชื่อ --</option>
+</select>
+
+<label>เวลาเริ่ม</label>
+<input type="time" id="start" step="60">
+
+<label>เวลาสิ้นสุด</label>
+<input type="time" id="end" step="60">
+
+<label>แนบรูปหลักฐาน</label>
+<input type="file" id="proof" accept="image/*">
+
+<button onclick="saveTime()">
+บันทึก
+</button>
+
+<button onclick="openAdminMenu()">
+🔐 เมนูแอดมิน
+</button>
+
+<button id="themeBtn" onclick="toggleTheme()">
+🌙 โหมดมืด
+</button>
+
+<div id="result"></div>
+
+</div>
+
+<!-- ADMIN MENU -->
+<div class="container" id="adminPage" style="display:none;">
+
+<h2>🔐 เมนูแอดมิน</h2>
+
+<button onclick="showPage('page2')">
+🌟 สรุปเวลา
+</button>
+
+<button onclick="showPage('page3')">
+🖼️ คลังรูป
+</button>
+
+<button onclick="showPage('page4')">
+🕒 ประวัติ
+</button>
+
+<button onclick="showPage('page5')">
+👥 จัดการรายชื่อ
+</button>
+
+<button onclick="showPage('page1')">
+⬅️ กลับ
+</button>
+
+</div>
+
+<!-- SUMMARY -->
+<div class="container" id="page2" style="display:none;">
+
+<h2>🌟 สรุปเวลารวม</h2>
+
+<div id="history"></div>
+
+<button onclick="clearAllData()">
+🗑️ ลบข้อมูลทั้งหมด
+</button>
+
+<button onclick="showPage('adminPage')">
+⬅️ กลับ
+</button>
+
+</div>
+
+<!-- GALLERY -->
+<div class="container" id="page3" style="display:none;">
+
+<h2>🖼️ คลังรูปหลักฐาน</h2>
+
+<div id="gallery"></div>
+
+<button onclick="clearGallery()">
+🗑️ ลบรูปทั้งหมด
+</button>
+
+<button onclick="showPage('adminPage')">
+⬅️ กลับ
+</button>
+
+</div>
+
+<!-- HISTORY -->
+<div class="container" id="page4" style="display:none;">
+
+<h2>🕒 ประวัติการลงเวลา</h2>
+
+<input
+type="text"
+id="historySearch"
+placeholder="ค้นหาชื่อหรือวันที่"
+oninput="showDutyHistory()">
+
+<div id="historyLog"></div>
+
+<button onclick="clearHistory()">
+🗑️ ลบประวัติทั้งหมด
+</button>
+
+<button onclick="showPage('adminPage')">
+⬅️ กลับ
+</button>
+
+</div>
+
+<!-- USER MANAGER -->
+<div class="container" id="page5" style="display:none;">
+
+<h2>👥 จัดการรายชื่อ</h2>
+
+<input
+type="text"
+id="newUserName"
+placeholder="เพิ่มชื่อใหม่">
+
+<button onclick="addUser()">
+➕ เพิ่มชื่อ
+</button>
+
+<div id="userList"></div>
+
+<button onclick="showPage('adminPage')">
+⬅️ กลับ
+</button>
+
+</div>
+
+<div class="container" id="page6" style="display:none;">
+
+    <h2 id="personTitle">📸 รูป</h2>
+
+    <div id="personGallery"></div>
+
+    <button onclick="showPage('page3')">
+        ⬅️ กลับ
+    </button>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
